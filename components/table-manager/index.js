@@ -151,19 +151,19 @@ export default function TableManager() {
               <input checked  type="checkbox" {...column.getToggleHiddenProps()}
                    className="accent-violet-500 w-4 h-4 checked text-violet-600 bg-violet-900 rounded border-violet-300 focus:ring-violet-500" />
               <label 
-                  className="ml-2 text-sm font-medium text-gray-900 dark:text-black"> {column.Header}</label>
+                  className="ml-2 text-sm font-medium text-black"> {column.Header}</label>
           </div>
 
         ))}  
       </div>
 
      <div className="mt-4 mx-4 overflow-x-auto relative shadow-md sm:rounded-lg">
-      <table {...getTableProps() } className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <table {...getTableProps() } className="w-full text-sm text-left ">
+        <thead className="whitespace-nowrap text-xs bg-violet-600 text-violet-100">
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-                <th scope="col" className="py-3 px-6" {...column.getHeaderProps(column.getSortByToggleProps())}>{column.render('Header')}
+                <th scope="col" className="py-2 px-4" {...column.getHeaderProps(column.getSortByToggleProps())}>{column.render('Header')}
                  <div>{column.canFilter ? column.render('Filter') : null}</div>
                  <span>
                     {column.isSorted ? (column.isSortedDesc ? '🔽' : '🔼') : 'กรอง'}
@@ -178,10 +178,10 @@ export default function TableManager() {
             prepareRow(row);
 
             return (
-              <tr  {...row.getRowProps()} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <tr  {...row.getRowProps()} className=" text-gray-900  border-b bg-violet-50  hover:  hover:bg-violet-700 hover:text-white">
                 {row.cells.map(cell => {
                   return (
-                    <td className="py-1 px-6 text-gray-900 whitespace-nowrap dark:text-white" {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                    <td className="py-1 px-4 whitespace-nowrap " {...cell.getCellProps()}>{cell.render('Cell')}</td>
                   );
                 })}
               </tr>
@@ -234,5 +234,4 @@ export default function TableManager() {
       </>
   );
 };
-
 
