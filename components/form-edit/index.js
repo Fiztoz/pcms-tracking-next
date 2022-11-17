@@ -86,7 +86,7 @@ export default function Modal({ data }) {
   return (
     <>
        <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10 " initialFocus={cancelButtonRef} onClose={setOpen}>
+      <Dialog as="div" className="relative z-auto" initialFocus={cancelButtonRef} onClose={setOpen}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -99,7 +99,7 @@ export default function Modal({ data }) {
           <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
         </Transition.Child>
 
-        <div className="fixed inset-0 z-10 overflow-y-auto">
+        <div className="fixed inset-0 z-auto overflow-y-auto">
           <div className="flex min-h-full items-end justify-center p-4 text-center">
             <Transition.Child
               as={Fragment}
@@ -110,7 +110,7 @@ export default function Modal({ data }) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-x-auto rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+              <Dialog.Panel className="relative transform overflow-x-auto rounded-lg bg-white text-left shadow-xl transition-all">
                 <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start">
                 
@@ -123,7 +123,7 @@ export default function Modal({ data }) {
                        <p className='text-sm text-gray-600'>ข้อมูลเมื่อ { data.updatedAt } </p> 
                       <div className="mt-2">
                     
-                        <form onSubmit={ editRow }>
+                <form onSubmit={ editRow }>
                 <div className="overflow-hidden  sm:rounded-md">
                   <div className="bg-white px-0 py-5 sm:p-6">
                     <div className="grid grid-cols-6 gap-6">
@@ -137,7 +137,7 @@ export default function Modal({ data }) {
                           name="item_no"
                           defaultValue={data.item_no}
                           required
-                          className="mt-1 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          className="mt-1 font-light px-3 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
   
@@ -151,7 +151,7 @@ export default function Modal({ data }) {
                           name="item_name"
                           defaultValue={data.item_name}
                           required
-                          className="mt-1 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          className="mt-1 font-light px-3 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
 
@@ -165,12 +165,12 @@ export default function Modal({ data }) {
                           name="quantity"
                           defaultValue={data.quantity}
                           required
-                          className="mt-1 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          className="mt-1 font-light px-3 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
   
                       <div className="col-span-2">
-                        <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                        <label className="block text-sm font-medium text-gray-700">
                           หน่วยนับ
                         </label>
                         <input
@@ -179,26 +179,27 @@ export default function Modal({ data }) {
                           name="unit"
                           defaultValue={data.unit}
                           required
-                          className="mt-1 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          className="mt-1 font-light px-3 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
   
                       <div className="col-span-6 sm:col-span-4">
-                        <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
+                        <label className="block text-sm font-medium text-gray-700">
                           วงเงินงบประมาณ
                         </label>
                         <input
                           type="number"
+                          step=".01"
                           id="budget"
                           name="budget"
                           defaultValue={data.budget}
                           required
-                          className="mt-1 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          className="mt-1 font-light px-3 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
 
                       <div className="col-span-6 sm:col-span-3">
-                        <label htmlFor="country" className="block text-sm font-medium text-gray-700">
+                        <label className="block text-sm font-medium text-gray-700">
                           สถานะ
                         </label>
                         <select
@@ -206,7 +207,7 @@ export default function Modal({ data }) {
                           name="status"
                           required
                           defaultValue={data.status}
-                          className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                          className="mt-1 font-light block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                         >
                           <option>รอดำเนินการ</option>
                           <option>อยู่ระหว่างดำเนินการแล้ว</option>
@@ -226,7 +227,7 @@ export default function Modal({ data }) {
                           id="remark"
                           rows="4"
                           defaultValue={data.remark}
-                          className="mt-1 block w-full h-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          className="mt-1 font-light px-3 block w-full h-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
                     </div>

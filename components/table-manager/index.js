@@ -93,6 +93,7 @@ export default function TableManager() {
     getTableBodyProps,
     headerGroups,
     footerGroups,
+    page,
     rows,
     prepareRow,
     selectedFlatRows,
@@ -203,7 +204,7 @@ export default function TableManager() {
               <input checked  type="checkbox" {...column.getToggleHiddenProps()}
                    className="accent-violet-500 w-4 h-4 checked text-violet-600 bg-violet-900 rounded border-violet-300 focus:ring-violet-500" />
               <label 
-                  className="ml-2 text-sm font-medium text-black"> {column.Header}</label>
+                  className="ml-2 text-sm font-normal  text-black"> {column.Header}</label>
           </div>
 
         ))}  
@@ -218,7 +219,8 @@ export default function TableManager() {
                 <th scope="col" className="py-2 px-4" {...column.getHeaderProps(column.getSortByToggleProps())}>{column.render('Header')}
                  <div>{column.canFilter ? column.render('Filter') : null}</div>
                  <span>
-                    {column.isSorted ? (column.isSortedDesc ? '🔽' : '🔼') : ''}
+                    {column.isSorted ? (column.isSortedDesc ? '' : '') : ''}
+                    {/* {column.isSorted ? (column.isSortedDesc ? '🔽' : '🔼') : ''} */}
                   </span>
                 </th>
               ))}
@@ -233,7 +235,7 @@ export default function TableManager() {
               <tr {...row.getRowProps()} 
               //click row active
               onClick={() => setFdata(row.original)}
-              className=" text-gray-900  border-b bg-violet-50  hover:  hover:bg-violet-700 hover:text-white">
+              className="font-light text-gray-900  border-b bg-violet-50  hover:bg-violet-700 hover:text-white">
                 {row.cells.map(cell => {
                   return (
                     <td className="py-1 px-4 whitespace-nowrap " {...cell.getCellProps()}>{cell.render('Cell')}</td>
@@ -245,47 +247,6 @@ export default function TableManager() {
         </tbody>
       </table>
       </div>
-
-      <div>
-        <span>
-          หน้า {' '}
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>
-        </span>
-        | ไปที่หน้า:{' '}
-        <input
-          type="number"
-          defaultValue={pageIndex + 1}
-          onChange={e => {
-            const pageNumber = e.target.value ? Number(e.target.value) - 1 : 0;
-            gotoPage(pageNumber);
-          }}
-        />
-        <select
-          value={pageSize}
-          onChange={e => setPageSize(Number(e.target.value))}
-        >
-          {[10, 25, 50].map(pageSize => (
-            <option key={pageSize} value={pageSize}>
-              Show: {pageSize}
-            </option>
-          ))}
-        </select>
-        <button disabled={!canPreviousPage} onClick={() => gotoPage(0)}>
-          {'<<'}
-        </button>
-        <button disabled={!canNextPage} onClick={() => nextPage()}>
-          Next
-        </button>
-        <button disabled={!canPreviousPage} onClick={() => previousPage()}>
-          Previous
-        </button>
-        <button disabled={!canNextPage} onClick={() => gotoPage(pageCount - 1)}>
-          {'>>'}
-        </button>
-      </div>
-
       </>
   );
 };
