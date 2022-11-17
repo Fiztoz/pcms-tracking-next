@@ -8,8 +8,6 @@ import Modal from '../form-edit';
 
 export default function TableManager() {
 
-  const [showModal, setShowModal] = useState(false);
-
   const [fdata, setFdata] = useState(
     {
       bid_no: null, 
@@ -220,7 +218,7 @@ export default function TableManager() {
                 <th scope="col" className="py-2 px-4" {...column.getHeaderProps(column.getSortByToggleProps())}>{column.render('Header')}
                  <div>{column.canFilter ? column.render('Filter') : null}</div>
                  <span>
-                    {column.isSorted ? (column.isSortedDesc ? '🔽' : '🔼') : 'กรอง'}
+                    {column.isSorted ? (column.isSortedDesc ? '🔽' : '🔼') : ''}
                   </span>
                 </th>
               ))}
