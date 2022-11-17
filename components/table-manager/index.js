@@ -11,12 +11,22 @@ export default function TableManager() {
   const [showModal, setShowModal] = useState(false);
 
   const [fdata, setFdata] = useState(
-    // {
-    //   unituse :0,
-    //   kapamount : 0,
-    //   kapclaim: 0,
-    //   loading:false
-    // }
+    {
+      bid_no: null, 
+      budget: null,
+      date_contract: null,
+      detail_plan: null,
+      id: 0, 
+      item_name:null, 
+      item_no: null,
+      list_no: null,
+      owner: null,
+      quantity: null,
+      remark: null,
+      status: null,
+      unit: null,
+      year_budget:null
+    }
   );
 
 
@@ -56,9 +66,24 @@ export default function TableManager() {
         });
         
         console.log(mapped);
-        setData(mapped)		
-    })
 
+        let reversed = mapped.reverse()
+
+        // function compare( a, b ) {
+        //   if ( a.list_no > b.list_no ){
+        //     return -1;
+        //   }
+        //   if ( a.list_no < b.list_no ){
+        //     return 1;
+        //   }
+        //   return 0;
+        // }
+
+        // let sorted = mapped.sort( compare )
+
+        setData(reversed)		
+
+     })
 
 	}, []);
 
