@@ -62,6 +62,7 @@ export default function TableManager() {
            "item_no": obj.attributes.item_no,
            "item_name": obj.attributes.item_name,
            "date_contract": obj.attributes.date_contract,
+           "updatedAt" : obj.attributes.updatedAt
              };
         });
         

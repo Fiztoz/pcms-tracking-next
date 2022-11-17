@@ -1,4 +1,4 @@
-// import { format } from 'date-fns';
+import { format } from 'date-fns';
 import ColumnFilter from './ColumnFilter';
 
 export const COLUMNS = [
@@ -97,6 +97,9 @@ export const COLUMNS = [
     Header: 'วันที่แก้ไขข้อมูล',
     accessor: 'updatedAt',
     Footer: 'วันที่แก้ไขข้อมูล',
+    Cell: ({ value }) => {
+           return format(new Date(value), 'dd/MM/yyyy');
+        },
     disableFilters: true
   },
   {
