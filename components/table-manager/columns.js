@@ -77,6 +77,9 @@ export const COLUMNS = [
     Header: 'วัน/เดือน/ปี',
     accessor: 'date_contract',
     Footer: 'วัน/เดือน/ปี',
+    Cell: ({ value }) => {
+      return format(new Date(value), 'dd/MM/yyyy');
+   },
     disableFilters: true
   },
   {
