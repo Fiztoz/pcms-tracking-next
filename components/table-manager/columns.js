@@ -21,15 +21,6 @@ export const COLUMNS = [
     Footer: 'รายการแผนการจัดซื้อ/จ้าง/เช่า',
     //Filter: ColumnFilter
   },
-  // {
-  //   Header: 'Date of Birth',
-  //   accessor: 'date_of_birth',
-  //   Footer: 'Date of Birth',
-  //   Cell: ({ value }) => {
-  //     return format(new Date(value), 'dd/MM/yyyy');
-  //   }
-  //   // Filter: ColumnFilter
-  // },
   {
     Header: 'Bid No.',
     accessor: 'bid_no',
@@ -39,7 +30,8 @@ export const COLUMNS = [
   {
     Header: 'รายการที่',
     accessor: 'list_no',
-    Footer: 'รายการที่'
+    Footer: 'รายการที่',
+    disableFilters: true
     // Filter: ColumnFilter
   },
   {
@@ -56,7 +48,7 @@ export const COLUMNS = [
   },
   {
     Header: 'จำนวน',
-    accessor: 'quality',
+    accessor: 'quantity',
     Footer: 'จำนวน',
     disableFilters: true
     // Filter: ColumnFilter

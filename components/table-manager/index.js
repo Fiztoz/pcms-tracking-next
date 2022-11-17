@@ -49,7 +49,7 @@ export default function TableManager() {
       var mapped = resp.data.map(function(obj) {
         return {
           "id": obj.id,
-           "quantity": obj.attributes.item_name,
+           "quantity": obj.attributes.quantity,
            "unit": obj.attributes.unit,
            "budget": obj.attributes.budget,
            "status": obj.attributes.status,
