@@ -3,9 +3,22 @@ import { useTable, useGlobalFilter, useFilters,useSortBy,usePagination,useRowSel
 import ColumnFilter from './ColumnFilter';
 import GlobalFilter from './GlobalFilter';
 import { COLUMNS } from './columns';
+import Modal from '../form-edit';
 //import { Checkbox } from './Checkbox';
 
 export default function TableManager() {
+
+  const [showModal, setShowModal] = useState(false);
+
+  const [fdata, setFdata] = useState(
+    // {
+    //   unituse :0,
+    //   kapamount : 0,
+    //   kapclaim: 0,
+    //   loading:false
+    // }
+  );
+
 
   const columns = useMemo(() => COLUMNS, []);
   const defaultColumn = useMemo(() => {
@@ -48,6 +61,8 @@ export default function TableManager() {
 
 
 	}, []);
+
+
 
   const {
     getTableProps,
@@ -93,16 +108,19 @@ export default function TableManager() {
         //   ),
         //   Cell: ({ row }) => <Checkbox {...row.getToggleRowSelectedProps()} />
         // },
-        {
-          id: 'xbutton',
-          Header: 'Edit',
+        // {
+        //   id: 'editButton',
+        //   Header: 'Edit',
          
-          Cell: ({ row }) => (
-            <button onClick={() => console.log("heyyyyyyy")}>แก้ไขข้อมูล</button>
-          )
-        },
+        //   Cell: ({ row }) => (
+        //     // <button onClick={() => console.log("heyyyyyyy")}>แก้ไขข้อมูล</button>
+        //     <button onClick={() => {
+        //       console.log(row.original)
+        //     }}>แก้ไขข้อมูล</button>
+        //   )
+        // },
         {
-          id: 'button',
+          id: 'deleteButton',
           Header: 'Delete',
           Cell: ({ row }) => (
             // <button onClick={() => console.log(row.original)}>Del</button>
@@ -141,6 +159,8 @@ export default function TableManager() {
 
   return (
    <>
+      <Modal data={ fdata } />
+    
       <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
 
       <div className="pt-5 px-5 grid gap-4 grid-cols-4 auto-cols-max">
@@ -178,7 +198,10 @@ export default function TableManager() {
             prepareRow(row);
 
             return (
-              <tr  {...row.getRowProps()} className=" text-gray-900  border-b bg-violet-50  hover:  hover:bg-violet-700 hover:text-white">
+              <tr {...row.getRowProps()} 
+              //click row active
+              onClick={() => setFdata(row.original)}
+              className=" text-gray-900  border-b bg-violet-50  hover:  hover:bg-violet-700 hover:text-white">
                 {row.cells.map(cell => {
                   return (
                     <td className="py-1 px-4 whitespace-nowrap " {...cell.getCellProps()}>{cell.render('Cell')}</td>
@@ -193,12 +216,12 @@ export default function TableManager() {
 
       <div>
         <span>
-          Page{' '}
+          หน้า {' '}
           <strong>
             {pageIndex + 1} of {pageOptions.length}
           </strong>
         </span>
-        | Go to page:{' '}
+        | ไปที่หน้า:{' '}
         <input
           type="number"
           defaultValue={pageIndex + 1}

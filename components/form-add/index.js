@@ -77,7 +77,7 @@ fetch("http://localhost:1337/api/stocks", requestOptions)
     <>
      <div className="rounded-md px-2 py-3">
             <button onClick={ openForm }   
-                    className="flex justify-center items-center font-light bg-purple-600 hover:bg-violet-800 px-3 py-1 rounded-lg text-gray-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white disabled:bg-gray-400" 
+                    className="flex justify-center items-center font-light bg-violet-600 hover:bg-violet-800 px-3 py-1 rounded-lg text-gray-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white disabled:bg-gray-400" 
                     // disabled={status.loading}
                     type="button">
                 สร้างรายการแผนการจัดซื้อ/จ้าง/เช่า
