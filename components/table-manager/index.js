@@ -145,47 +145,45 @@ export default function TableManager() {
         //     }}>แก้ไขข้อมูล</button>
         //   )
         // },
-        {
-          id: 'deleteButton',
-          Header: 'ลบแถว',
-          Cell: ({ row }) => (
+        // {
+        //   id: 'deleteButton',
+        //   Header: 'ลบแถว',
+        //   Cell: ({ row }) => (
      
-            <button className="inline-flex items-center font-light  bg-rose-500 hover:bg-rose-400 px-3 py-1 rounded-lg text-gray-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+        //     <button className="inline-flex items-center font-light  bg-rose-500 hover:bg-rose-400 px-3 py-1 rounded-lg text-gray-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
             
-            onClick={() => {
+        //     onClick={() => {
            
-              console.log(row.original.id)
+        //       console.log(row.original.id)
 
-                // console.log("Row Data: " , rowData)
-                alert("ddddddd" +row.original.id)
+        //         // alert("ddddddd" +row.original.id)
 
-				var myHeaders = new Headers();
-                myHeaders.append("Authorization", "Bearer cff0c3992591b70c40eab298c01cb784593fd949f9f01a3e1af4c0f184ccb3a7e496c545c15c11b883cb866bf662235a8b4dfd61a1734922dacfe1b0133b54eb07574016474eb795d0e58d700675967de05fb015b5026bad55e71690395aa35aaa519fb07e0d4268a87899af6609b68e0496efc66faa1396fd99b7f3380cc986");
+				// var myHeaders = new Headers();
+        //         myHeaders.append("Authorization", "Bearer cff0c3992591b70c40eab298c01cb784593fd949f9f01a3e1af4c0f184ccb3a7e496c545c15c11b883cb866bf662235a8b4dfd61a1734922dacfe1b0133b54eb07574016474eb795d0e58d700675967de05fb015b5026bad55e71690395aa35aaa519fb07e0d4268a87899af6609b68e0496efc66faa1396fd99b7f3380cc986");
 
-				var requestOptions = {
-				method: 'DELETE',
-				headers: myHeaders,
-				redirect: 'follow'
-				};
+				// var requestOptions = {
+				// method: 'DELETE',
+				// headers: myHeaders,
+				// redirect: 'follow'
+				// };
 
-				fetch(`http://localhost:1337/api/stocks/${row.original.id}`, requestOptions)
-				.then(response => response.text())
-				.then(result => location.reload())
-				.catch(error => console.log('error', error));
+				// fetch(`http://localhost:1337/api/stocks/${row.original.id}`, requestOptions)
+				// .then(response => response.text())
+				// .then(result => location.reload())
+				// .catch(error => console.log('error', error));
 
-            }}>
+        //     }}>
 
-         <svg className="mr-2" fill='#FFFFFF' xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" width="20px" height="20px">
-          <path d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z"/></svg>
-              
-            ลบ
-          </button>
+        //  <svg className="mr-2" fill='#FFFFFF' xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" width="20px" height="20px">
+        //   <path d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z"/></svg> 
+        //     ลบ
+        //   </button>
 
         
 
 
-          )
-        },
+        //   )
+        // },
         
         
       ];

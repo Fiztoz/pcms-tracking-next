@@ -65,6 +65,24 @@ export default function Modal({ data }) {
 
   }
 
+  function deleteRow(){
+    //console.log("rm"+data.id)
+    var myHeaders = new Headers();
+                myHeaders.append("Authorization", "Bearer cff0c3992591b70c40eab298c01cb784593fd949f9f01a3e1af4c0f184ccb3a7e496c545c15c11b883cb866bf662235a8b4dfd61a1734922dacfe1b0133b54eb07574016474eb795d0e58d700675967de05fb015b5026bad55e71690395aa35aaa519fb07e0d4268a87899af6609b68e0496efc66faa1396fd99b7f3380cc986");
+
+				var requestOptions = {
+				method: 'DELETE',
+				headers: myHeaders,
+				redirect: 'follow'
+				};
+
+				fetch(`http://localhost:1337/api/stocks/${data.id}`, requestOptions)
+				.then(response => response.text())
+				.then(result => location.reload())
+				.catch(error => console.log('error', error));
+
+  }
+
   return (
     <>
        <Transition.Root show={open} as={Fragment}>
@@ -221,6 +239,14 @@ export default function Modal({ data }) {
                     onClick={() => setOpen(false)}
                   >
                     ยกเลิก
+                  </button>
+
+                  <button
+                    type="button"
+                    className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                    onClick={() => deleteRow()}
+                  >
+                    ลบ
                   </button>
         
                   <button
