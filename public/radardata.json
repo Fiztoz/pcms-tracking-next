@@ -1,0 +1,33 @@
+{
+  "labels": [
+  "Source Distribution",
+  "Realtime Energy Trading",
+  "Price Intervention",
+  "Permission Required",
+  "Producer to Customer",
+  "Electric Reliability",
+  "Self Verify Transaction"
+  ],
+  "datasets": [
+    { "label": "Existing",
+      "data": [42, 28, 96, 83, 0, 99, 25],
+      "fill": true,
+      "backgroundColor": "rgba(113, 113, 122,0.6)",
+      "borderColor": "rgba(113, 113, 122,0.6)",
+      "pointBackgroundColor": "rgb(113, 113, 122)",
+      "pointBorderColor": "#fff",
+      "pointHoverBackgroundColor": "#fff",
+      "pointHoverBorderColor": "rgb(113, 113, 122)"
+    }, 
+    { "label": "Disruptive",
+      "data": [100, 100, 26, 23, 100, 74, 100],
+      "fill": true,
+      "backgroundColor": "rgba(124, 58, 237, 0.6)",
+      "borderColor": "rgba(124, 58, 237,0.6)",
+      "pointBackgroundColor": "rgb(124, 58, 237)",
+      "pointBorderColor": "#fff",
+      "pointHoverBackgroundColor" : "#fff",
+      "pointHoverBorderColor": "rgb(124, 58, 237)"
+    }
+  ]
+}

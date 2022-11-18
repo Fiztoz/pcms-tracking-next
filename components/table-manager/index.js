@@ -216,7 +216,7 @@ export default function TableManager() {
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-                <th scope="col" className="py-2 px-4" {...column.getHeaderProps(column.getSortByToggleProps())}>{column.render('Header')}
+                <th scope="col" className="py-2 px-4" {...column.getHeaderProps(column.getSortByToggleProps({ title: "" }))}>{column.render('Header')}
                  <div>{column.canFilter ? column.render('Filter') : null}</div>
                  <span>
                     {column.isSorted ? (column.isSortedDesc ? '' : '') : ''}

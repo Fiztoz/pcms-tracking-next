@@ -1,10 +1,13 @@
-import { AddRow, TableManager } from '../components';
+import { BaseLayout,AddRow, TableManager,Navbar } from '../components';
 
 export default function Home() {
   return (
     <>
-     <AddRow/>
-     <TableManager/>
+     <Navbar main={true} dashboard={false} dataimport={false} />
+       <BaseLayout>
+        <AddRow/>
+        <TableManager/>
+       </BaseLayout>
     </>
    
 

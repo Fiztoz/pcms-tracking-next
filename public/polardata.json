@@ -1,0 +1,34 @@
+{
+  "labels": ["AirDrop", "Marketing", "Private Sale", "Public Sale", "Team", "Advisor",  "System Reward","Staking", "Operating Cost"],
+  "datasets": [
+    {
+      "label": "Tokenomic",
+     
+      "data": [1,8,10,16,15,4,10,18,18],
+      "backgroundColor": [
+        
+        "rgba(227, 52, 47, 0.6)",	
+        "rgba(246, 153, 63, 0.6)",
+        "rgba(255, 237, 74, 0.6)",	
+        "rgba(56, 193, 114, 0.6)",
+        "rgba(77, 192, 181, 0.6)",	
+        "rgba(52, 144, 220, 0.6)",	
+        "rgba(101, 116, 205, 0.6)",	
+        "rgba(149, 97, 226, 0.6)",	
+        "rgba(204, 204, 255, 0.6)"
+      ],
+      "borderColor": [
+        "rgba(227, 52, 47, 0.6)",	
+        "rgba(246, 153, 63, 0.6)",
+        "rgba(255, 237, 74, 0.6)",	
+        "rgba(56, 193, 114, 0.6)",
+        "rgba(77, 192, 181, 0.6)",	
+        "rgba(52, 144, 220, 0.6)",	
+        "rgba(101, 116, 205, 0.6)",	
+        "rgba(149, 97, 226, 0.6)",	
+        "rgba(204, 204, 255, 0.6)"
+      ],
+      "borderWidth": 1
+    }
+  ]
+}
