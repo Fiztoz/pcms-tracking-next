@@ -1,7 +1,7 @@
 import { Disclosure } from '@headlessui/react'
-import {  BeakerIcon,Bars3Icon } from '@heroicons/react/24/solid'
+import { Bars3Icon } from '@heroicons/react/24/solid'
 
-import {  NavRight } from '../index'
+import { NavRight,ButtonLogout } from '../index'
 import Image from 'next/image'
 import { motion } from 'framer-motion';
 
@@ -55,7 +55,7 @@ export default function Navbar({main,dashboard,dataimport}) {
               </div>
               <div className=" md:block px-2">
                 <div className="ml-4 flex items-center md:ml-6">
-                 {/* <ButtonLoggout/> */}
+                 <ButtonLogout/>
                 </div>
               </div>
               <div className="-mr-2 flex md:hidden">
