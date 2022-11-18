@@ -139,16 +139,16 @@ function openModal() {
         <div className="w-full max-w-md space-y-8">
           <div>
          
-            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-200">
-              ระบบติดตามสถานะ งานจัดหา
+            <h2 className="mt-6 text-center text-3xl font-normal tracking-tight text-gray-600">
+              PCMS Tracking
             </h2>
           </div>
           <form className="mt-8 space-y-6" onSubmit={ verify }>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md shadow-sm">
               <div>
-              <span className="px-1 text-sm text-gray-400">พบปัญหา โทร 02-9999999</span>
-                <label htmlFor="email-address" className="sr-only">
+            
+                <label className="sr-only">
                   รหัสพนักงาน
                 </label>
                 <input
@@ -183,9 +183,9 @@ function openModal() {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                  className="h-4 w-4 rounded border-gray-600 text-violet-600 focus:ring-violet-500"
                 />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-200">
+                <label className="ml-2 block text-sm text-gray-600">
                   จำรหัสผ่าน
                 </label>
               </div>

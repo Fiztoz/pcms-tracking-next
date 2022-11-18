@@ -1,4 +1,6 @@
+import React from 'react'
 import Head from 'next/head'
+
 // import { Navbar, Footer } from "../index"
 
 export default function BaseLayout({children}) {

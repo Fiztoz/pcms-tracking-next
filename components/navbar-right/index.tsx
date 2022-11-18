@@ -1,9 +1,8 @@
+import React from 'react'
 import Link from 'next/link'
-
-export default function NavbarRight() {
+export default function NavRight() {
     return (
         <>
-
             <aside className="fixed right-0 z-10 w-full backdrop-blur-sm" aria-label="Sidebar">
                 <div className='backdrop-blur-sm flex flex-row-reverse'>
                     <div className="flex w-1/2 min-h-screen overflow-y-auto py-4 px-3 rounded-l-md bg-violet-800">

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon } from '@heroicons/react/24/solid'
 
@@ -30,7 +31,7 @@ export default function Navbar({main,dashboard,dataimport}) {
                 height="50"
                 /> */}
          </div>
-          <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-3">
+          <div className="max-w-7xl  px-4 sm:px-4 lg:px-3">
             <div className="flex items-center h-16 justify-end md:justify-between ">
               <div className="flex items-center">
                 <div className="hidden md:block ">

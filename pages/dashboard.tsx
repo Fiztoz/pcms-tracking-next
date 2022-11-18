@@ -1,3 +1,4 @@
+import React from 'react';
 import { BaseLayout,AddRow, TableManager,Navbar, ChartShow } from '../components';
 import { useRouter } from 'next/router'
 
