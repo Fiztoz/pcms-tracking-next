@@ -1,16 +1,19 @@
-import React from 'react';
-import { Disclosure } from '@headlessui/react'
-import { Bars3Icon } from '@heroicons/react/24/solid'
+import React,{Fragment} from 'react';
+import { Disclosure,Menu, Transition } from '@headlessui/react'
+import { Bars3Icon,BellIcon, XMarkIcon } from '@heroicons/react/24/solid'
 
 import { NavRight,ButtonLogout } from '../index'
-import Image from 'next/image'
-import { motion } from 'framer-motion';
 
-export default function Navbar({main,dashboard,dataimport}) {
+import { motion } from 'framer-motion';
+import { FaChartPie } from "react-icons/fa";
+
+
+export default function Navbar({main,dashboard,datamanager}) {
 
   const navigation = [
     { name: 'หน้าหลัก', href: '/', current: main},
     { name: 'รายงานผู้บริหาร', href: 'dashboard', current: dashboard },
+    { name: 'จัดการข้อมูล', href: 'datamanager', current: datamanager },
   ]
   
   function classNames(...classes) {
@@ -19,24 +22,21 @@ export default function Navbar({main,dashboard,dataimport}) {
 
     return (
       <>
-      <Disclosure as="nav" className="sticky top-0 z-10 px-3 bg-white md:bg-opacity-5  backdrop-blur-md">
+      {/* <Disclosure as="nav" className="sticky top-0 z-10 px-3 bg-white md:bg-opacity-5  backdrop-blur-md"> */}
+      <Disclosure as="nav" className="sticky top-0 z-10 px-3 bg-violet-600   backdrop-blur-md">
       {({ open }) => (
         <>
          <div className='absolute md:hidden p-3'>
-                {/* <Image
-                className="object-cover"
-                src="/kap.svg"
-                alt="kapacitor"
-                width="50"
-                height="50"
-                /> */}
+               
          </div>
-          <div className="max-w-7xl  px-4 sm:px-4 lg:px-3">
+          <div className="px-4 sm:px-4 lg:px-3">
             <div className="flex items-center h-16 justify-end md:justify-between ">
               <div className="flex items-center">
                 <div className="hidden md:block ">
                   <div className="ml-0 flex items-baseline space-x-4">
+                  <FaChartPie className=' text-white justify-center'/>
                     {navigation.map((item) => (
+                    
                       <a 
                         key={item.name}
                         href={item.href}
@@ -52,14 +52,14 @@ export default function Navbar({main,dashboard,dataimport}) {
                       </a>
                     ))}
                   </div>
+                 
                 </div>
+              
               </div>
-              <div className=" md:block px-2">
-                <div className="ml-4 flex items-center md:ml-6">
+              <div className="px-2">
                  <ButtonLogout/>
-                </div>
               </div>
-              <div className="-mr-2 flex md:hidden">
+              <div className="mr-2 flex md:hidden">
                 {/* Mobile menu button */}
                 <Disclosure.Button className="bg-violet-800 inline-flex items-center justify-center p-1 rounded-md text-gray-50 hover:text-white hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-violet-800 focus:ring-white">
                   <span className="sr-only">Open main menu</span>
@@ -81,6 +81,7 @@ export default function Navbar({main,dashboard,dataimport}) {
               transition={{ duration: 0.05 }}
             >
             <NavRight/>
+
           </motion.div>  
           </Disclosure.Panel>
         </>

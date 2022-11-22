@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import Footer from '../footer'
 
 // import { Navbar, Footer } from "../index"
 
@@ -18,7 +19,7 @@ export default function BaseLayout({children}) {
        
        {children}
        </div>
-      {/* <Footer /> */}
+      <Footer />
       </div>
       </>
     )

@@ -4,6 +4,10 @@ import { useAuth } from "../services/AuthProvider"
 
 import React, { Fragment,useEffect, useRef, useState } from "react"
 import { BaseLayout, Navbar } from '../components'
+import { LockClosedIcon } from '@heroicons/react/24/solid'
+
+
+import Image from 'next/image'
 
 // import { LockClosedIcon } from '@heroicons/react/solid'
 
@@ -132,10 +136,10 @@ function openModal() {
   return (
     <>
 
-    <Navbar main={false} dashboard={false} dataimport={true} />
+    <Navbar main={false} dashboard={false} datamanager={false} />
     <BaseLayout>
       
-    <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    {/* <div className="flex h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>
          
@@ -143,7 +147,7 @@ function openModal() {
               PCMS Tracking
             </h2>
           </div>
-          <form className="mt-8 space-y-6" onSubmit={ verify }>
+          <form className="mt-8 space-y-10" onSubmit={ verify }>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md shadow-sm">
               <div>
@@ -191,14 +195,14 @@ function openModal() {
               </div>
             </div>
 
-            <div>
+            <div className='mt-500'>
               <button
                 type="submit" 
-                className="group relative flex w-full justify-center rounded-md border border-transparent bg-violet-600 hover:bg-violet-800 py-2 px-4 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
+                className="group relative flex w-full  justify-center rounded-md border border-transparent bg-violet-600 hover:bg-violet-800 py-2 px-4 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
               >
-                {/* <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                  <LockClosedIcon className="h-5 w-5 text-violet-500 group-hover:text-violet-400" aria-hidden="true" />
-                </span> */}
+                <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                  <LockClosedIcon className="h-5 w-5 text-violet-200 group-hover:text-violet-400" aria-hidden="true" />
+                </span>
                 เข้าสู่ระบบ
               </button>
             </div>
@@ -206,68 +210,103 @@ function openModal() {
         </div>
       </div>
 
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
-          </Transition.Child>
+    </BaseLayout> */}
 
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title
-                    as="h3"
-                    className="inline-flex items-center text-lg font-medium leading-6 text-gray-900"
-                  >
-                    <svg className="mr-2 w-10 h-10 text-red-500" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 7L12 13" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M12 17.01L12.01 16.9989" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    {modalbox.title}
-                  </Dialog.Title>
-                  <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                       {modalbox.message}
-                    </p>
-                  </div>
-
-                  <div className="mt-4">
-                    <button
-                      type="button"
-                      className="text-red-600 bg-transparent hover:bg-red-600 hover:text-white font-medium rounded-lg text-md py-2 px-4 text-center"
-                      onClick={closeModal}
-                    >
-                      OK
-                    </button>
-                  </div>
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
+    <div className="rounded-lg mt-2 mb-14 pb-2 pt-4  bg-white px-1 sm:px-3 lg:px-3 ">
+      <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-3 md:gap-y-10">
+        <div className="relative ">
+          <dd className=" mt-6 mb-1">
+          <Image
+              className="rounded-lg object-cover"
+              src="/work_chat.svg"
+              alt="kapacitor"
+              width="200"
+              height="120"
+              layout="responsive"
+              priority
+            />
+          </dd>
+        </div>
+        <div className="relative sm:pt-8 lg:pt-0.5 hidden md:block">
+          <dd>
+          <div className="flex h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-md space-y-8">
+          <div>
+         
+            <h2 className="mt-6 text-left text-3xl font-normal tracking-tight text-gray-600">
+              ระบบจัดการวางแผนพัสดุ
+            </h2>
           </div>
-        </Dialog>
-      </Transition>
+          <form className="mt-8 space-y-10" onSubmit={ verify }>
+            <input type="hidden" name="remember" defaultValue="true" />
+            <div className="-space-y-px rounded-md shadow-sm">
+              <div>
+            
+                <label className="sr-only">
+                  รหัสพนักงาน
+                </label>
+                <input
+                  id="employeeid"
+                  name="employeeid"
+                  type="number"
+                  autoComplete="current-username"
+                  required
+                  className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  placeholder="รหัสพนักงาน"
+                />
+              </div>
+              <div>
+                <label htmlFor="password" className="sr-only">
+                  รหัสผ่าน
+                </label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  placeholder="รหัสผ่าน"
+                />
+              </div>
+            </div>
 
-    </BaseLayout>
-    
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <input
+                  id="remember-me"
+                  name="remember-me"
+                  type="checkbox"
+                  className="h-4 w-4 rounded border-gray-600 text-violet-600 focus:ring-violet-500"
+                />
+                <label className="ml-2 block text-sm text-gray-600">
+                  จำรหัสผ่าน
+                </label>
+              </div>
+            </div>
+
+            <div className='mt-500'>
+              <button
+                type="submit" 
+                className="group relative flex w-full  justify-center rounded-md border border-transparent bg-violet-600 hover:bg-violet-800 py-2 px-4 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
+              >
+                <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                  <LockClosedIcon className="h-5 w-5 text-violet-200 group-hover:text-violet-400" aria-hidden="true" />
+                </span>
+                เข้าสู่ระบบ
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+          </dd>
+        </div> 
+      </dl>
+  </div> 
+    </BaseLayout> 
     </>
+    
+
   )
  
 }

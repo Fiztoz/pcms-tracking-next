@@ -210,7 +210,7 @@ export default function TableManager() {
         ))}  
       </div>
 
-     <div className="mt-4 mx-4 overflow-x-auto relative shadow-md sm:rounded-lg">
+     <div className="mb-10 mt-4 mx-4 overflow-x-auto relative shadow-md sm:rounded-lg">
       <table {...getTableProps() } className="w-full text-sm text-left ">
         <thead className="whitespace-nowrap text-xs bg-violet-600 text-violet-100">
           {headerGroups.map(headerGroup => (

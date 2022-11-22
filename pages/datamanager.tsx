@@ -1,7 +1,7 @@
 import React from 'react';
 import { BaseLayout,AddRow, TableManager,Navbar } from '../components';
 
-export default function Home() {
+export default function dataManager() {
   return (
     <>
      <Navbar main={true} dashboard={false} datamanager={false} />
@@ -10,7 +10,7 @@ export default function Home() {
         <TableManager/>
        </BaseLayout>
     </>
-   
-
   );
 }
+
+dataManager.requireAuth = true
