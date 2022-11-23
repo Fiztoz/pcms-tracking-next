@@ -5,15 +5,15 @@ import { Bars3Icon,BellIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import { NavRight,ButtonLogout } from '../index'
 
 import { motion } from 'framer-motion';
-import { FaChartPie } from "react-icons/fa";
+import { FaHome, FaChartPie, FaDatabase } from "react-icons/fa";
 
 
 export default function Navbar({main,dashboard,datamanager}) {
 
   const navigation = [
-    { name: 'หน้าหลัก', href: '/', current: main},
-    { name: 'รายงานผู้บริหาร', href: 'dashboard', current: dashboard },
-    { name: 'จัดการข้อมูล', href: 'datamanager', current: datamanager },
+    { name: 'หน้าหลัก', href: '/', current: main ,icon: FaHome},
+    { name: 'รายงานผู้บริหาร', href: 'dashboard', current: dashboard, icon:FaChartPie },
+    { name: 'จัดการข้อมูล', href: 'datamanager', current: datamanager, icon: FaDatabase },
   ]
   
   function classNames(...classes) {
@@ -26,29 +26,28 @@ export default function Navbar({main,dashboard,datamanager}) {
       <Disclosure as="nav" className="sticky top-0 z-10 px-3 bg-violet-600   backdrop-blur-md">
       {({ open }) => (
         <>
-         <div className='absolute md:hidden p-3'>
-               
-         </div>
+      
           <div className="px-4 sm:px-4 lg:px-3">
             <div className="flex items-center h-16 justify-end md:justify-between ">
               <div className="flex items-center">
                 <div className="hidden md:block ">
                   <div className="ml-0 flex items-baseline space-x-4">
-                  <FaChartPie className=' text-white justify-center'/>
+                 
                     {navigation.map((item) => (
-                    
                       <a 
                         key={item.name}
                         href={item.href}
                         className={classNames(
                           item.current
-                            ? 'bg-violet-700 text-white'
-                            : 'bg-violet-400 text-white hover:bg-violet-700 hover:text-white',
+                            ? 'flex items-center bg-violet-700 text-white'
+                            : 'flex items-center bg-violet-400 text-white hover:bg-violet-700 hover:text-white',
                           'px-3 py-2 rounded-md text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
                       >
-                        {item.name}
+                      
+                       <item.icon/>
+                        <p className='px-2'>{item.name}</p>
                       </a>
                     ))}
                   </div>

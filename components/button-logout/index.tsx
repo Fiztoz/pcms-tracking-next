@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { useAuth } from "../../services/AuthProvider"
 
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaSignOutAlt,FaLock } from "react-icons/fa";
 
 
 export default function ButtonLogout() {
@@ -33,10 +33,12 @@ export default function ButtonLogout() {
         ) : 
         <button
           type="button"
-          className="text-white bg-red-500 hover:bg-red-600 hover:text-white font-medium rounded-lg text-md py-2 px-4 text-center"
+          className="inline-flex items-center  text-white bg-red-500 hover:bg-red-600 hover:text-white font-medium rounded-lg text-md py-2 px-4 text-center"
           onClick={login}
         >
-         เข้าสู่ระบบ
+         
+        <p className='px-2'>เข้าสู่ระบบ</p>
+       <FaLock />
         </button>
         }
 
