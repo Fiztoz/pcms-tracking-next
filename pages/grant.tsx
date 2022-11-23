@@ -214,8 +214,8 @@ function openModal() {
 
     <div className="rounded-lg mt-2 mb-14 pb-2 pt-4  bg-white px-1 sm:px-3 lg:px-3 ">
       <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-3 md:gap-y-10">
-        <div className="relative ">
-          <dd className=" mt-6 mb-1">
+        <div className="relative">
+          <dd className="mt-6 mb-1">
           <Image
               className="rounded-lg object-cover"
               src="/work_chat.svg"
@@ -285,7 +285,6 @@ function openModal() {
               </div>
             </div>
 
-            <div className='mt-500'>
               <button
                 type="submit" 
                 className="group relative flex w-full  justify-center rounded-md border border-transparent bg-violet-600 hover:bg-violet-800 py-2 px-4 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
@@ -295,7 +294,7 @@ function openModal() {
                 </span>
                 เข้าสู่ระบบ
               </button>
-            </div>
+       
           </form>
         </div>
       </div>

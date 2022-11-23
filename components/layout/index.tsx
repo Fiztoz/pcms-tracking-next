@@ -12,15 +12,20 @@ export default function BaseLayout({children}) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         {/* <link rel="shortcut icon" href="/kap.svg" /> */}
       </Head>
-      <div className="bg-white overflow-hidden min-h-screen">
-       {/* <Navbar  /> */}
-       <div className="mx-auto px-4">
-       {/* <Header/> */}
-       
-       {children}
-       </div>
-      <Footer />
+   
+
+      <div className="flex flex-col h-screen-min justify-between">
+          {/* <header className="h-10 bg-red-500">Header</header> */}
+          <main className="mb-10 bg-white"> 
+            {children} 
+          </main>
+
+          <footer> 
+              <Footer /> 
+          </footer>
       </div>
       </>
+
+
     )
   }
