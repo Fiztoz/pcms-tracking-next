@@ -8,6 +8,8 @@ export default function AddRow() {
   const [open, setOpen] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
 
+  const API_ENDPOINT = `${process.env.NEXT_PUBLIC_API_BACKEND}/api/stocks`;
+
   const cancelButtonRef = useRef(null);
 
   function openForm() {
@@ -52,7 +54,7 @@ export default function AddRow() {
         redirect: "follow",
       };
 
-      fetch("http://localhost:1337/api/stocks", requestOptions)
+      fetch(API_ENDPOINT, requestOptions)
         .then((response) => response.json())
         //.then(result => console.log(result))
         .then((result) => {

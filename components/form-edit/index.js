@@ -5,6 +5,8 @@ import { format } from 'date-fns';
 
 export default function Modal({ data }) {
 
+  const API_ENDPOINT = `${process.env.NEXT_PUBLIC_API_BACKEND}/api/stocks`;
+
   const [open, setOpen] = useState(false)
 
   const cancelButtonRef = useRef(null)
@@ -58,7 +60,7 @@ export default function Modal({ data }) {
         redirect: 'follow'
       };
       
-      fetch(`http://localhost:1337/api/stocks/${data.id}`, requestOptions)
+      fetch(`${ API_ENDPOINT}/${data.id}`, requestOptions)
         .then(response => response.text())
         .then(result => location.reload())
         .catch(error => console.log('error', error));
@@ -76,7 +78,7 @@ export default function Modal({ data }) {
 				redirect: 'follow'
 				};
 
-				fetch(`http://localhost:1337/api/stocks/${data.id}`, requestOptions)
+				fetch(`${ API_ENDPOINT}/${data.id}`, requestOptions)
 				.then(response => response.text())
 				.then(result => location.reload())
 				.catch(error => console.log('error', error));

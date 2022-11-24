@@ -37,7 +37,7 @@ export default function TableManager() {
 
   const [data, setData] = useState([]);
 
-	const url = "http://localhost:1337/api/stocks";
+	const url = `${process.env.NEXT_PUBLIC_API_BACKEND}/api/stocks`;
 
 	useEffect(() => {
 		

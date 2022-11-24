@@ -71,7 +71,7 @@ function openModal() {
     event.preventDefault() // don't redirect page
     let identifier = event.target.employeeid.value
     let password = event.target.password.value
-    console.log("Heyyyyyyy")
+    console.log(_host)
     console.log(identifier+password)
 
     try {
@@ -98,7 +98,7 @@ function openModal() {
                if(response.status == 200){
                 response.json().then( 
                   (data)=> {
-                    // console.log(data)
+                    //console.log(data)
                     // console.log(data.jwt)
                     // console.log(data.user.username)
                     auth.manageUser(data.user.username,data.jwt) 
