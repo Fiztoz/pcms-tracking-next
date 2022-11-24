@@ -64,8 +64,7 @@ function openModal() {
 
   async function verify(event){
   
-    const API_HOST = process.env.NEXT_PUBLIC_API_BACKEND;
-    const API_ACCESS = `${API_HOST}/api/auth/local`;
+    const API_ACCESS = `${process.env.NEXT_PUBLIC_API_BACKEND}/api/auth/local`;
     let _host = API_ACCESS 
 
     event.preventDefault() // don't redirect page
