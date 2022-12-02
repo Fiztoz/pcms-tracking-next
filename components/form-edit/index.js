@@ -16,7 +16,7 @@ export default function Modal({ data, item }) {
 //Our search filter function
   const searchFilter = (array) => {
     return array.filter(
-      (el) => el.item_no.includes(query)
+      (el) => el.item_no.includes(query) || el.item_name.includes(query) 
     )
   }
 
@@ -118,32 +118,6 @@ const handleChange = (e) => {
 				.catch(error => console.log('error', error));
   }
 
-const [form, setForm] = useState({
-  phone: ''
-});
-
-const normalizePhone = (value, previousValue) => {
-  // Any value at all?
-  if (!value) return value;
-  // replace method to only allow digits 1-9
-  const nums = value.replace(/[^\d]/g, ""); // only allows 0-9
-  // If the length of value is greater than nothing
-  if (!previousValue || value.length > previousValue.length) {
-    // Is the length = 3? If true, add a parentheses to each side (123)
-    if (nums.length === 3) return `(${nums})`;
-    // Is the length = 6? If true, add a parentheses to each side (123)
-    // and add the other three numbers
-    if (nums.length === 6) return `(${nums.slice(0, 3)}) ${nums.slice(3)}`;
-    // These next two statements cover everything in between all numbers being equal
-    if (nums.length <= 3) return nums;
-    if (nums.length <= 6) return `(${nums.slice(0, 3)}) ${nums.slice(3)}-`;
-    // Finally add add a parentheses to each side (123)
-    // Add the next three numbers
-    // Add a hyphen and the last 4 numbers
-    return `(${nums.slice(0, 3)}) ${nums.slice(3, 6)}-${nums.slice(6, 10)}`;
-  }
-};
-
 const normalizeItem_no = (value, previousValue) => {
   // Any value at all?
   if (!value) return value;
@@ -240,18 +214,36 @@ function getItemData(){
                         
                         {show ? (
         <div className="bg-slate-800 bg-opacity-50 flex justify-center items-center absolute top-0 right-0 bottom-0 left-0">
-        <div className="bg-white px-16 py-14 rounded-md text-center">
-          <h1 className="text-xl mb-4 font-bold text-slate-500">ค้นหาพัสดุ</h1>
-          <input
-  placeholder="รหัสพัสดุ"
+        <div className="bg-white px-5 py-5 rounded-md text-center">
+      
+          {/* <input
+  className="mt-1 font-light px-3 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+  placeholder="พิมพ์ชื่อหรือรหัสพัสดุ"
   onChange={handleChange}
-/>
+  
+/> */}
 
-                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+<div className=" bg-white">
+        <div className="container justify-center items-center">
+          <div className="relative"> 
+            <input type="text" className="font-light h-14 w-96 pl-3 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" 
+            placeholder="พิมพ์ชื่อ หรือรหัสพัสดุ" 
+            onChange={handleChange}
+            />
+            <div className="absolute top-2 right-2">
+              <button onClick= {() => setShow(false)} 
+              className="h-10 w-20 text-white rounded-lg bg-red-500 hover:bg-red-600">ออก
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+                    <table className="table-auto w-full overflow-x-scroll h-80 block text-sm text-left text-gray-500 dark:text-gray-400">
                 <tbody>
                   {
                     filtered.map((show) => (
-                      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={show.item_no}>
+                      <tr className="font-light text-gray-900 border-b bg-white  hover:bg-violet-700 hover:text-white" key={show.item_no}>
                         <td  
                         onClick={ 
                           ()=> { 
@@ -262,21 +254,20 @@ function getItemData(){
                             }))  
                            setShow(false)
                         }
-                        } className="break-words px-6 py-2">{show.item_no}:{show.item_name}</td>
+                        } className="break-words  w-full px-2 py-2">
+                         
+                                     
+  <div className="flex space-x-4">
+  <div> {show.item_no.slice(0, 1)+ '-'+ show.item_no.slice(1, 4)+'-'+show.item_no.slice(4, 8)}</div>
+  <div> {show.item_name}</div>
+
+</div>
+                        </td>
                     </tr>
                     ))
                   }
                 </tbody>
               </table>
-
-
-          <button className="bg-red-500 px-4 py-2 rounded-md text-md text-white"
-            onClick= {() => setShow(false)}
-          >
-            ออก
-            
-            </button>
-
         </div>
       </div>
         ) : 
@@ -286,20 +277,25 @@ function getItemData(){
                         <input
                           type="text"
                           id="item_no"
-                          name="item_no"
-                          // onChange={normalizeInput} 
-                          //defaultValue={data.item_no}
-                          // defaultValue = { 
-                          // // data.item_no ? 'a': data.item_no.slice(0, 1)+ '-'+ data.item_no.slice(1, 4)+'-'+data.item_no.slice(4, 8)
-                          //  data.item_no ? data.item_no.slice(0, 1)+ '-'+ data.item_no.slice(1, 4)+'-'+data.item_no.slice(4, 8): itemx.item_no
-                          //  } 
-                          onChange={
-                            //() => console.log("GGGGGG")
-                            getItemData
-                            }
+                          name="item_no" 
+                          // onChange={(event) => {
+                          //   const { value } = event.target;
+                          //   setItemx({
+                          //     ...itemx,
+                          //     item_no: normalizeItem_no(value, initialFormState.phone),
+                          //   });
+                          // }}
+                          // onChange={
+                          //   //() => console.log("GGGGGG")
+                          //   getItemData
+                          //   }
                           disabled
-                          //defaultValue={ itemx.item_no }
-                          value={ itemx.item_no ?? '' }
+                          // value={
+                          //    itemx.item_no ? (itemx.item_no.slice(0, 1)+ '-'+ itemx.item_no.slice(1, 4)+'-'+itemx.item_no.slice(4, 8)):''
+                          // }
+                          value={
+                             itemx.item_no ?? ''
+                          }
                           required
                           className="bg-gray-100 mt-1 font-light px-3 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
@@ -317,9 +313,6 @@ function getItemData(){
                           disabled
                           className="bg-gray-100 mt-1 font-light px-3 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
-                        
-
-                      
                       </div>
 
                       <div className="col-span-4">
