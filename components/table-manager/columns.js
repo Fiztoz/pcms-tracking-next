@@ -57,7 +57,14 @@ export const COLUMNS = [
     Header: 'จำนวน',
     accessor: 'quantity',
     Footer: 'จำนวน',
-    disableFilters: true
+    disableFilters: true,
+    Cell: ({ value }) => {
+      if (value !=null){
+        let formated = Intl.NumberFormat('en-Us', { maximumSignificantDigits: 12 }).format(value)
+        return formated;
+      }
+      
+   },
     // Filter: ColumnFilter
   },
   {
@@ -71,7 +78,14 @@ export const COLUMNS = [
     Header: 'วงเงินงบประมาณ',
     accessor: 'budget',
     Footer: 'วงเงินงบประมาณ',
-    disableFilters: true
+    disableFilters: true,
+    Cell: ({ value }) => {
+      if (value !=null){
+        let formated = Intl.NumberFormat('en-Us', { maximumSignificantDigits: 12 }).format(value)
+        return formated;
+      }
+      
+   },
     // Filter: ColumnFilter
   },
   {
