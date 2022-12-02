@@ -37,13 +37,20 @@ export const COLUMNS = [
   {
     Header: 'รหัสพัสดุ',
     accessor: 'item_no',
-    Footer: 'รหัสพัสดุ'
+    Footer: 'รหัสพัสดุ',
+    Cell: ({ value }) => {
+      if (value !=null && value.length == 8){
+        let format_item_no = value.slice(0, 1)+ '-'+ value.slice(1, 4)+'-'+value.slice(4, 8)
+        return format_item_no;
+      }
+      
+   },
     // Filter: ColumnFilter
   },
   {
     Header: 'ชื่อพัสดุ',
     accessor: 'item_name',
-    Footer: 'ชื่อพัสดุ'
+    Footer: 'ชื่อพัสดุ',
     // Filter: ColumnFilter
   },
   {

@@ -1,32 +1,66 @@
 import { Fragment, useRef, useState,useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { format } from 'date-fns';
+import { FaSistrix } from "react-icons/fa";
+import { da } from 'date-fns/locale';
 
+export default function Modal({ data, item }) {
 
-export default function Modal({ data }) {
+///////////item query/////////
+  const [query, setQuery] = useState('');
+  const [itemx, setItemx] = useState({
+    item_no: data.item_no,
+    item_name:data.item_name,
+    item_unit: data.unit
+  });
+
+//Our search filter function
+  const searchFilter = (array) => {
+    return array.filter(
+      (el) => el.item_no.includes(query)
+    )
+  }
+
+//Applying our search filter function to our array of countries recieved from the API
+  const filtered = searchFilter(item)
+
+//Handling the input on our search bar
+const handleChange = (e) => {
+  setQuery(e.target.value)
+}
 
   const API_ENDPOINT = `${process.env.NEXT_PUBLIC_API_BACKEND}/api/stocks`;
 
   const [open, setOpen] = useState(false)
+  const [show, setShow] = useState(false)
 
   const cancelButtonRef = useRef(null)
-
+ 
   useEffect(() => {
 
-    function editForm(){
-
-      console.log(data)
+    function openForm(){
+      // console.log(data)
+      // console.log(item)
       if(data.id != 0){
         setOpen(true)
-        console.log("data avail")
+        setItemx(prev => ({...prev,
+          item_no : data.item_no,
+          item_name : data.item_name,
+          item_unit: data.unit,
+          }))  
+        console.log("have data")
+        console.log(data)
       } else {
-        console.log("sorry")
+        console.log("not data")
       }
-
     }
-    editForm();
+
+    openForm();
   }, [data]);
 
+ 
+  function closeEditbox(){
+    setOpen(false)
+  }
 
   function editRow(event){
 
@@ -82,13 +116,72 @@ export default function Modal({ data }) {
 				.then(response => response.text())
 				.then(result => location.reload())
 				.catch(error => console.log('error', error));
-
   }
+
+const [form, setForm] = useState({
+  phone: ''
+});
+
+const normalizePhone = (value, previousValue) => {
+  // Any value at all?
+  if (!value) return value;
+  // replace method to only allow digits 1-9
+  const nums = value.replace(/[^\d]/g, ""); // only allows 0-9
+  // If the length of value is greater than nothing
+  if (!previousValue || value.length > previousValue.length) {
+    // Is the length = 3? If true, add a parentheses to each side (123)
+    if (nums.length === 3) return `(${nums})`;
+    // Is the length = 6? If true, add a parentheses to each side (123)
+    // and add the other three numbers
+    if (nums.length === 6) return `(${nums.slice(0, 3)}) ${nums.slice(3)}`;
+    // These next two statements cover everything in between all numbers being equal
+    if (nums.length <= 3) return nums;
+    if (nums.length <= 6) return `(${nums.slice(0, 3)}) ${nums.slice(3)}-`;
+    // Finally add add a parentheses to each side (123)
+    // Add the next three numbers
+    // Add a hyphen and the last 4 numbers
+    return `(${nums.slice(0, 3)}) ${nums.slice(3, 6)}-${nums.slice(6, 10)}`;
+  }
+};
+
+const normalizeItem_no = (value, previousValue) => {
+  // Any value at all?
+  if (!value) return value;
+  // replace method to only allow digits 1-9
+  const nums = value.replace(/[^\d]/g, ""); // only allows 0-9
+  console.log(nums)
+  // If the length of value is greater than nothing
+  if (!previousValue || value.length > previousValue.length) {
+    // Is the length = 3? If true, add a parentheses to each side (123)
+    if (nums.length === 1) return `${nums}-`;
+    if (nums.length === 2) return `${nums.slice(0, 1)}-${nums.slice(1, 4)}`;
+    // Is the length = 6? If true, add a parentheses to each side (123)
+    // and add the other three numbers
+    // if (nums.length === 6) return `(${nums.slice(0, 3)}) ${nums.slice(3)}`;
+    // These next two statements cover everything in between all numbers being equal
+    // if (nums.length <= 3) return nums;
+    // if (nums.length <= 6) return `(${nums.slice(0, 3)}) ${nums.slice(3)}-`;
+    // Finally add add a parentheses to each side (123)
+    // Add the next three numbers
+    // Add a hyphen and the last 4 numbers
+    return `${nums.slice(0, 1)}-${nums.slice(1, 4)}-${nums.slice(4, 8)}`;
+  }
+};
+
+
+function getItemData(){
+  console.log("get item data")
+  setShow(true)
+
+}
+
 
   return (
     <>
-       <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-auto" initialFocus={cancelButtonRef} onClose={setOpen}>
+
+      <Transition.Root show={open} as={Fragment}>
+      
+      <Dialog  className="relative z-auto" initialFocus={cancelButtonRef} onClose={setOpen}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -99,9 +192,11 @@ export default function Modal({ data }) {
           leaveTo="opacity-0"
         >
           <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+ 
         </Transition.Child>
 
         <div className="fixed inset-0 z-auto overflow-y-auto">
+       
           <div className="flex min-h-full items-end justify-center p-4 text-center">
             <Transition.Child
               as={Fragment}
@@ -114,47 +209,117 @@ export default function Modal({ data }) {
             >
               <Dialog.Panel className="relative transform overflow-x-auto rounded-lg bg-white text-left shadow-xl transition-all">
                 <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                  <div className="sm:flex sm:items-start">
-                
+                  <div className="sm:flex sm:items-start">                
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                       <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
                       Bid No. {data.bid_no} รายการที่ { data.list_no } 
                       </Dialog.Title> 
+                  
                        <p>งบประมาณ {data.year_budget} : {data.detail_plan} </p>
                        <p className='text-sm text-gray-600'>ครบกำหนด { data.date_contract} </p> 
                        <p className='text-sm text-gray-600'>ข้อมูลเมื่อ { data.updatedAt } </p> 
                       <div className="mt-2">
-                    
+                      
                 <form onSubmit={ editRow }>
+
                 <div className="overflow-hidden  sm:rounded-md">
                   <div className="bg-white px-0 py-5 sm:p-6">
                     <div className="grid grid-cols-6 gap-6">
                       <div className="col-span-2">
-                        <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                         รหัสพัสดุ
+                  
+                        <label htmlFor="first-name" className="blocktext-sm font-medium text-gray-700">
+                         รหัสพัสดุ  
+                            <button className='px-4' type="button"  
+                                    onClick={
+                                      //() => console.log("GGGGGG")
+                                      getItemData
+                                      } >
+                                <FaSistrix/>
+                            </button>
                         </label>
+                        
+                        {show ? (
+        <div className="bg-slate-800 bg-opacity-50 flex justify-center items-center absolute top-0 right-0 bottom-0 left-0">
+        <div className="bg-white px-16 py-14 rounded-md text-center">
+          <h1 className="text-xl mb-4 font-bold text-slate-500">ค้นหาพัสดุ</h1>
+          <input
+  placeholder="รหัสพัสดุ"
+  onChange={handleChange}
+/>
+
+                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <tbody>
+                  {
+                    filtered.map((show) => (
+                      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={show.item_no}>
+                        <td  
+                        onClick={ 
+                          ()=> { 
+                           setItemx(prev => ({...prev,
+                            item_no : show.item_no,
+                            item_name : show.item_name,
+                            item_unit: show.item_unit,
+                            }))  
+                           setShow(false)
+                        }
+                        } className="break-words px-6 py-2">{show.item_no}:{show.item_name}</td>
+                    </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
+
+
+          <button className="bg-red-500 px-4 py-2 rounded-md text-md text-white"
+            onClick= {() => setShow(false)}
+          >
+            ออก
+            
+            </button>
+
+        </div>
+      </div>
+        ) : 
+        null
+        }
+   
                         <input
                           type="text"
                           id="item_no"
                           name="item_no"
-                          defaultValue={data.item_no}
+                          // onChange={normalizeInput} 
+                          //defaultValue={data.item_no}
+                          // defaultValue = { 
+                          // // data.item_no ? 'a': data.item_no.slice(0, 1)+ '-'+ data.item_no.slice(1, 4)+'-'+data.item_no.slice(4, 8)
+                          //  data.item_no ? data.item_no.slice(0, 1)+ '-'+ data.item_no.slice(1, 4)+'-'+data.item_no.slice(4, 8): itemx.item_no
+                          //  } 
+                          onChange={
+                            //() => console.log("GGGGGG")
+                            getItemData
+                            }
+                          disabled
+                          //defaultValue={ itemx.item_no }
+                          value={ itemx.item_no ?? '' }
                           required
-                          className="mt-1 font-light px-3 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          className="bg-gray-100 mt-1 font-light px-3 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
   
                       <div className="col-span-4">
                         <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
-                          ชื่อพัสดุ
+                          ชื่อพัสดุ 
                         </label>
                         <input
                           type="text"
                           id="item_name"
                           name="item_name"
-                          defaultValue={data.item_name}
-                          required
-                          className="mt-1 font-light px-3 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          value={itemx.item_name ?? '' }
+                          disabled
+                          className="bg-gray-100 mt-1 font-light px-3 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
+                        
+
+                      
                       </div>
 
                       <div className="col-span-4">
@@ -179,9 +344,11 @@ export default function Modal({ data }) {
                           type="text"
                           id="unit"
                           name="unit"
-                          defaultValue={data.unit}
-                          required
-                          className="mt-1 font-light px-3 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          disabled
+                          value={itemx.item_unit ?? ''}
+                          //defaultValue={ data.unit}
+                          //required
+                          className="bg-gray-100 mt-1 font-light px-3 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                       </div>
   
@@ -218,7 +385,6 @@ export default function Modal({ data }) {
                         </select>
                       </div>
 
-          
                       <div className="col-span-6">
                         <label htmlFor="street-address" className="block text-sm font-medium text-gray-700">
                          รายละเอียด/ปัญหา
@@ -239,7 +405,8 @@ export default function Modal({ data }) {
                 <button
                     type="button"
                     className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                    onClick={() => setOpen(false)}
+                    //onClick={() => setOpen(false)}
+                    onClick={ closeEditbox }
                   >
                     ยกเลิก
                   </button>

@@ -6,4 +6,3 @@ export { default as NavRight }from "./navbar-right"
 export { default as ChartShow }from "./chart"
 export { default as ButtonLogout }from "./button-logout"
 export { default as Footer }from "./footer"
-
