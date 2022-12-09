@@ -1,12 +1,16 @@
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useRef, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { FaSistrix } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function AddRow() {
 
   const [open, setOpen] = useState(false);
+  const [type, setType] = useState('จัดซื้อ');
   const [startDate, setStartDate] = useState(new Date());
+  const [equib, setEquib] = useState([]);
+  const [planName, setPlanName] = useState([]);
 
   const API_ENDPOINT = `${process.env.NEXT_PUBLIC_API_BACKEND}/api/stocks`;
 
@@ -67,6 +71,89 @@ export default function AddRow() {
     }
   }
 
+  function setJobType(event){
+    event.preventDefault(); // don't redirect page
+    setType(event.target.value)
+  }
+
+  useEffect(() => {
+
+     console.log("hhhhhhhhhh")
+    function loadEquibName(){
+      console.log("load equibbbb")
+      var myHeaders = new Headers();
+      myHeaders.append(
+        "Authorization",
+        "Bearer cff0c3992591b70c40eab298c01cb784593fd949f9f01a3e1af4c0f184ccb3a7e496c545c15c11b883cb866bf662235a8b4dfd61a1734922dacfe1b0133b54eb07574016474eb795d0e58d700675967de05fb015b5026bad55e71690395aa35aaa519fb07e0d4268a87899af6609b68e0496efc66faa1396fd99b7f3380cc986"
+      );
+      myHeaders.append("Content-Type", "application/json");
+
+      var requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      fetch(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/equibps`, requestOptions)
+      .then((resp) => resp.json())
+      .then((resp) => {
+        var mapped = resp.data.map(function(obj) {
+          return {
+             "equib_name": obj.attributes.equib_name,
+               };
+          });   
+          console.log(mapped);
+          setEquib(mapped);
+     
+       })
+        .catch((error) => console.log("error", error));
+    }
+
+    function loadPlanlist(){
+      console.log("load equibbbb")
+      var myHeaders = new Headers();
+      myHeaders.append(
+        "Authorization",
+        "Bearer cff0c3992591b70c40eab298c01cb784593fd949f9f01a3e1af4c0f184ccb3a7e496c545c15c11b883cb866bf662235a8b4dfd61a1734922dacfe1b0133b54eb07574016474eb795d0e58d700675967de05fb015b5026bad55e71690395aa35aaa519fb07e0d4268a87899af6609b68e0496efc66faa1396fd99b7f3380cc986"
+      );
+      myHeaders.append("Content-Type", "application/json");
+
+      var requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      fetch(`${process.env.NEXT_PUBLIC_API_BACKEND}/api/stocks`, requestOptions)
+      .then((resp) => resp.json())
+      .then((resp) => {
+        var mapped = resp.data.map(function(obj) {
+          return {
+             "plan_name": obj.attributes.detail_plan,
+               };
+          });   
+          console.log(mapped);
+          
+          const filteredArr = mapped.reduce((acc, current) => {
+            const x = acc.find(item => item.plan_name === current.plan_name);
+            if (!x) {
+              return acc.concat([current]);
+            } else {
+              return acc;
+            }
+          }, []);
+         
+          console.log(filteredArr);
+          setPlanName(filteredArr);
+     
+       })
+        .catch((error) => console.log("error", error));
+    }
+
+    loadPlanlist();
+    loadEquibName();
+  }, [open]);
+
   return (
     <>
       <div className="rounded-md px-2 py-3">
@@ -125,7 +212,91 @@ export default function AddRow() {
                             <div className="overflow-hidden  sm:rounded-md">
                               <div className="bg-white px-0 py-5 sm:p-6">
                                 <div className="grid grid-cols-12 gap-6">
-                                  <div className="col-span-6">
+
+                                <div className="col-span-4">
+                                    <label
+                                      htmlFor="first-name"
+                                      className="block text-sm font-medium text-gray-700"
+                                    >
+                                      ประเภทงาน
+                                    </label>
+                            
+                                    <select
+                                      id="job_type"
+                                      name="job_type"
+                                      required
+                                      onChange={setJobType}
+                                      className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                    >
+                                      <option>จัดซื้อ</option>
+                                      <option>จัดจ้าง</option>
+                                      <option>จัดเช่า</option>
+                                    </select>
+                                  </div>
+                                   
+
+                                  <div  className="col-span-8">
+                                  { type =='จัดซื้อ' ? (
+                                    <div>
+                                    <label
+                                      htmlFor="last-name"
+                                      className="block w-full text-sm font-medium text-gray-700"
+                                    >
+                                      กลุ่มอุปกรณ์
+                                    </label>
+                                  
+                                    <select
+                                      id="job_type"
+                                      name="job_type"
+                                      required
+                                      className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                    >
+                                     
+                                      {equib.map((item) => (
+                                            <option  key={item.equib_name}>{item.equib_name}</option>
+                                              ))}
+                                    </select>
+                                    </div>) : <div></div> }
+                                  
+                                    { type =='จัดจ้าง' ? (
+                                    <div>
+                                    <label
+                                      htmlFor="last-name"
+                                      className="block w-full text-sm font-medium text-gray-700"
+                                    >
+                                      ประเภทงานจ้าง
+                                    </label>
+                                    <select
+                                      id="job_employment"
+                                      name="job_employment"
+                                      required
+                                      className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                    >
+                                      <option>จ้างทำสายไฟ</option>
+                                      <option>จ้างอื่นๆ</option>
+                                    </select>
+                                    </div>) : <div></div> }
+
+                                    { type =='จัดเช่า' ? (
+                                    <div>
+                                    <label
+                                      htmlFor="last-name"
+                                      className="block w-full text-sm font-medium text-gray-700"
+                                    >
+                                      ประเภทงานเช่า
+                                    </label>
+                                    <input
+                                      type="text"
+                                      id="bid_no"
+                                      name="bid_no"
+                                      required
+                                      className="mt-1 px-3 py-3 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                    />
+                                    </div>) : <div></div> }
+
+                                  </div>
+
+                                  <div className="col-span-4">
                                     <label
                                       htmlFor="first-name"
                                       className="block text-sm font-medium text-gray-700"
@@ -146,7 +317,7 @@ export default function AddRow() {
                                     </select>
                                   </div>
 
-                                  <div className="col-span-6">
+                                  <div className="col-span-8">
                                     <label
                                       htmlFor="last-name"
                                       className="block w-full text-sm font-medium text-gray-700"
@@ -168,8 +339,15 @@ export default function AddRow() {
                                       htmlFor="email-address"
                                       className="block text-sm font-medium text-gray-700"
                                     >
-                                      รายการแผนจัดซื้อจ้างเช่า
+                                      รายการแผนจัดซื้อ/จ้าง/เช่า
                                     </label>
+                                    <button className='px-4' type="button"  
+                                    onClick={
+                                      () => console.log("GGGGGG")
+                                     // getItemData
+                                      } >
+                                <FaSistrix/>
+                            </button>
                                     <input
                                       type="text"
                                       id="detail_plan"
@@ -200,7 +378,7 @@ export default function AddRow() {
                                     </select>
                                   </div>
 
-                                   <div className="col-span-8">
+                                   {/* <div className="col-span-8">
                                      <label
                                       className="block  text-sm font-medium text-gray-700"
                                     >
@@ -212,7 +390,7 @@ export default function AddRow() {
                                         dateFormat="dd/MM/yyyy"
                                         onChange={(date) => setStartDate(date)} />
                                    
-                                  </div>
+                                  </div> */}
 
                                   <div className="col-span-12">
                                     <label className="block text-sm font-light text-gray-700"

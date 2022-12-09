@@ -16,7 +16,10 @@ export function AuthGuard({ children }: { children: JSX.Element }) {
        // setRedirect(router.route+"?pid="+pid)
        setRedirect(router.route)
        // router.push("/grant?pid="+pid)
-      router.push("/grant")
+      //router.push("/grant")
+      //console.log(process.env.NEXT_PUBLIC_KEY_CLOAK)
+      router.push("/callback")
+      // window.open('https://sso.pea.co.th/auth/realms/idm/protocol/openid-connect/auth?response_type=code&client_id=pealoan&redirect_uri=http://localhost:3000', '_self');
       }
     }
   }, [initializing, router, user, setRedirect])
