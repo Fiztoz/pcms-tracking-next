@@ -12,11 +12,11 @@ export default function ButtonLogout() {
 
   function logout(){
     auth.signOut()
-    router.push("/")
+    //router.push("/")
   }
 
   function login(){
-    router.push("/grant")
+    //router.push("/callback")
   }
 
   return (

@@ -12,14 +12,14 @@ export function AuthGuard({ children }: { children: JSX.Element }) {
     if (!initializing) {
       //auth is initialized and there is no user
       if (!user) {
-        // remember the page that user tried to access
+       // remember the page that user tried to access
        // setRedirect(router.route+"?pid="+pid)
        setRedirect(router.route)
        // router.push("/grant?pid="+pid)
       //router.push("/grant")
       //console.log(process.env.NEXT_PUBLIC_KEY_CLOAK)
-      router.push("/callback")
-      // window.open('https://sso.pea.co.th/auth/realms/idm/protocol/openid-connect/auth?response_type=code&client_id=pealoan&redirect_uri=http://localhost:3000', '_self');
+      //router.push("/callback")
+      window.open('http://localhost:1337/keycloak/login', '_self');
       }
     }
   }, [initializing, router, user, setRedirect])

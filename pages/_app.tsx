@@ -6,8 +6,6 @@ import { AppProps } from "next/app"
 
 import React from "react"
 import { AuthGuard } from "../services/AuthGuard"
-//////
-
 
 export type NextApplicationPage<P = any, IP = P> = NextPage<P, IP> & {
   requireAuth?: boolean
@@ -39,9 +37,3 @@ export default function MyApp(props: AppProps) {
   )
 }
 
-
-// function MyApp({ Component, pageProps }) {
-//   return <Component {...pageProps} />
-// }
-
-// export default MyApp
