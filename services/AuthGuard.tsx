@@ -15,9 +15,6 @@ export function AuthGuard({ children }: { children: JSX.Element }) {
        // remember the page that user tried to access
        // setRedirect(router.route+"?pid="+pid)
        setRedirect(router.route)
-       // router.push("/grant?pid="+pid)
-      //router.push("/grant")
-      //console.log(process.env.NEXT_PUBLIC_KEY_CLOAK)
       //router.push("/callback")
       window.open('http://localhost:1337/keycloak/login', '_self');
       }

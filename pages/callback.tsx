@@ -20,7 +20,7 @@ const { accessToken } = router.query
   }, [])
 
   useEffect(() => {
-    console.log(accessToken)
+    //console.log(accessToken)
  
     if (!initializing) {
       if (user) {
@@ -30,16 +30,15 @@ const { accessToken } = router.query
          router.push(redirect) // go to page which redirected to login
          clearRedirect()
         } else {
-           console.log("ERROR")
-          //router.push("/device?="+pid) // go to default protected page
+         //console.log("Default Page")
+        router.push("/datamanager") // go to default protected page
         }
       }
     }
   }, [router, getRedirect, clearRedirect, initializing, user])
 
   useEffect(() => {
-    console.log(accessToken)
-
+    //console.log(accessToken)
     async function getUserinfo(){
   
       const API_ACCESS = `https://sso.pea.co.th/auth/realms/idm/protocol/openid-connect/userinfo`;
@@ -54,7 +53,7 @@ const { accessToken } = router.query
                //redirect: 'follow'
                })
                .then((response) => {
-                 console.log(response.status)
+                 //console.log(response.status)
                  if(response.status == 200){
                   response.json().then( 
                     (data)=> {

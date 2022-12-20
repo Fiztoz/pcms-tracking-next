@@ -17,6 +17,7 @@ export default function ButtonLogout() {
 
   function login(){
     //router.push("/callback")
+    window.open('http://localhost:1337/keycloak/login', '_self');
   }
 
   return (

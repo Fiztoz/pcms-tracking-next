@@ -100,7 +100,7 @@ function openModal() {
                     //console.log(data)
                     // console.log(data.jwt)
                     // console.log(data.user.username)
-                    auth.manageUser(data.user.username,data.jwt) 
+                    //auth.manageUser(data.user.username,data.jwt) 
                   })
                }
               if(response.status == 400){
