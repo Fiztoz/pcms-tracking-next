@@ -1,5 +1,3 @@
-import { useRouter } from "next/router"
-
 export type UserCB = (user: User, error: any) => void
 
 export type User = {
