@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useAuth } from "../services/AuthProvider"
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef } from "react"
 
 const Grant = () => {
 
@@ -58,7 +58,6 @@ const { accessToken } = router.query
                   response.json().then( 
                     (data)=> {
                       //console.log(data)
-                  
                       auth.manageUser(
                         data.name,
                         data.preferred_username,
