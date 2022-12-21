@@ -6,6 +6,7 @@ import { AppProps } from "next/app"
 
 import React from "react"
 import { AuthGuard } from "../services/AuthGuard"
+import { CookieConsent } from '../components'
 
 export type NextApplicationPage<P = any, IP = P> = NextPage<P, IP> & {
   requireAuth?: boolean
@@ -20,6 +21,7 @@ export default function MyApp(props: AppProps) {
 
   return (
     <>
+    <CookieConsent/>
       <AuthProvider>
         {/* if requireAuth property is present - protect the page */}
         {Component.requireAuth ? (

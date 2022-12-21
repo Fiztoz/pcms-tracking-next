@@ -8,7 +8,7 @@ export default function Dashboard() {
   
   return (
     <>
-     <Navbar main={false} dashboard={true} datamanager={false} />
+     <Navbar main={false} dashboard={true} datamanager={false} stations={false} />
        <BaseLayout>
       <ChartShow />
        </BaseLayout>

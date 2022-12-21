@@ -9,7 +9,7 @@ export default function Home() {
   
   return (
     <>
-     <Navbar main={true} dashboard={false} datamanager={false} />
+     <Navbar main={true} dashboard={false} datamanager={false} stations={false} />
        <BaseLayout>
 
       <div className='py-5 px-3'>
